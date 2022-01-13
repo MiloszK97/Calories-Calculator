@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "254662681678",
+    "project_id": "caloriescalculator-e736c",
+    "storage_bucket": "caloriescalculator-e736c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254662681678:android:850c0f4395a2874e7a0f1f",
+        "android_client_info": {
+          "package_name": "com.example.caloriescalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254662681678-jbrgu3ch1ef8i0qi72ede2oboq2hgql9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.caloriescalculator",
+            "certificate_hash": "3a5b86b264cef6039fe1a10b9719edfdef4bb458"
+          }
+        },
+        {
+          "client_id": "254662681678-1sr6qn4tfg15190e2mijc0ic86ndk4lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8s7bZl7OZVGACv-pB3-mfKWx0RmsJpis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254662681678-1sr6qn4tfg15190e2mijc0ic86ndk4lh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="2dp"
+        android:padding="4dp"
+        app:cardBackgroundColor="#EDEDED" app:cardCornerRadius="4dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                tools:text="Nudes"/>
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ibDeleteProduct"
+                android:layout_below="@+id/tvProductName"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/outline_delete_24" android:backgroundTint="#00FFFFFF"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductWeightLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="Weight:"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvProductName"
+                android:layout_marginTop="2dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductWeight"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="125g"
+                android:layout_below="@+id/tvProductWeightLabel"
+                android:layout_marginTop="2dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductCaloriesLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="Calories:"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvProductName"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="136dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductCalories"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="456kcal"
+                android:layout_below="@+id/tvProductCaloriesLabel"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="136dp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llProductInfo"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tvProductWeight"
+                android:layout_marginTop="2dp">
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvProteinsLabel"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    tools:text="Proteins:"
+                    android:textStyle="bold"
+                    android:layout_gravity="start"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvFatLabel"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    tools:text="Fat:"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCarbsLabel"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    tools:text="Carbs:"
+                    android:textStyle="bold"
+                    android:layout_gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/llProductInfo"
+                android:layout_marginTop="2dp">
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvProductProteins"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    tools:text="47.7g"
+                    android:layout_gravity="start"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvProductFat"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    tools:text="34.7g"
+                    android:layout_gravity="center"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvProductCarbs"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    tools:text="124.9g"
+                    android:layout_gravity="end"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Calories Calculator</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="secondBreakfast">Second Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="snack">Snack</string>
+    <string name="dinner">Dinner</string>
+    <string name="searchForProducts">Type here name of the product</string>
+    <!-- Text in menu that appears after click 3 dots button on meal  -->
+    <string name="tvCopyMealText">Copy entire meal</string>
+    <string name="tvClearMealText">Clear this meal</string>
+    <!-- Text in activity where you can search for products -->
+    <string name="searchProdLabel">Search</string>
+    <string name="favProdLabel">Favourites</string>
+    <!-- Text in one row view on RV in searching products process is done -->
+    <string name="foundProdCaloriesLabel">Calories</string>
+    <string name="foundProdWeightLabel">Weight</string>
+    <!-- Login Activity -->
+    <string name="loginLabel">Login:</string>
+    <string name="loginETHint">Email</string>
+    <string name="passwordLoginLabel">Password:</string>
+    <string name="passwordETHint">Enter your password</string>
+    <string name="loginBtnLabel">Login</string>
+    <string name="goToRegister">Do not have an account?
+        <b>Register now.</b>
+    </string>
+    <string name="emailVerificationDialog">Looks like You do not verify your email address.</string>
+    <string name="emailVerificationDialog2">You cannot use this app without verified E-mail.</string>
+    <string name="emailVerificationDialog3">Do You want to receive verification E-mail?</string>
+    <string name="resetPasswordTV">Forgot Your password?
+        <b>Reset!</b>
+    </string>
+    <string name="resetYourPassword">Enter your E-mail</string>
+    <!-- Register Activity -->
+    <string name="emailRegisterETHint">Email</string>
+    <string name="registerBtnLabel">Register</string>
+    <string name="goToLogin">Already have an account?
+        <b>Sign in.</b>
+    </string>
+</resources>

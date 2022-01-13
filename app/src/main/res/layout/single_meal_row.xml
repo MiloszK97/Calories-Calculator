@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/cvMeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0acf8a"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tvOneMealView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    tools:text="Breakfast">
+            </TextView>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <ImageButton
+                        android:id="@+id/ibMealOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        style="@style/Widget.AppCompat.ActionButton.Overflow">
+                </ImageButton>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabAddProduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/ibMealOptions"
+                        android:src="@drawable/ic_plus"
+                        android:layout_margin="5dp"/>
+
+                <TextView
+                        android:id="@+id/tvSumCalories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_gravity="center"
+                        android:padding="4dp"
+                        tools:text="1234kcal">
+                </TextView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <TextView
+                        android:id="@+id/tvSumProteins"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_gravity="start"
+                        android:background="#6ff2c4"
+                        android:padding="4dp"
+                        tools:text="88.3 g">
+                </TextView>
+
+                <TextView
+                        android:id="@+id/tvSumFat"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_gravity="center"
+                        android:background="#6ff2c4"
+                        android:padding="4dp"
+                        tools:text="56.5 g">
+                </TextView>
+
+                <TextView
+                        android:id="@+id/tvSumCarbs"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_gravity="end"
+                        android:background="#6ff2c4"
+                        android:padding="4dp"
+                        tools:text="143.7 g">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
