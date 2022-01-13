@@ -5,13 +5,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.caloriescalculator.utils.CLICKED_MEAL_POSITION
 import com.example.caloriescalculator.utils.DEFAULT_MEALS
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         private const val REQUEST_CODE = 1909
     }
 
-    private lateinit var clRoot: CoordinatorLayout
+    private lateinit var toggle: ActionBarDrawerToggle
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
     private lateinit var rvMeals : RecyclerView
     private lateinit var rvAdapter : DisplayMealsAdapter
 
@@ -34,10 +41,53 @@ class MainActivity : AppCompatActivity() {
         finish()
         */
 
-        clRoot = findViewById(R.id.clRoot)
         rvMeals = findViewById(R.id.rvMeals)
+        drawerLayout = findViewById(R.id.drawerLayout)
+        navView = findViewById(R.id.navView)
 
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
         setupMainMealsScreen()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.miItem1 -> {
+                    Toast.makeText(
+                        applicationContext,
+                        "Clicked on drawer item: ${it.itemId}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                R.id.miItem2 -> {
+                    Toast.makeText(
+                        applicationContext,
+                        "Clicked on drawer item: ${it.itemId}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                R.id.miItem3 -> {
+                    Toast.makeText(
+                        applicationContext,
+                        "Clicked on drawer item: ${it.itemId}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            true
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)){
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupMainMealsScreen() {
