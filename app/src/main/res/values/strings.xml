@@ -9,6 +9,9 @@
     <!-- Sliding menu  -->
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="profileWelcome">Welcome</string>
+    <string name="exampleProfileName">Thomas</string>
+    <string name="tvProfileSettingsLabel">Profile settings</string>
     <!-- Text in menu that appears after click 3 dots button on meal  -->
     <string name="tvCopyMealText">Copy entire meal</string>
     <string name="tvClearMealText">Clear this meal</string>

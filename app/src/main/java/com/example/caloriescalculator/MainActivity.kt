@@ -7,9 +7,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var toggle: ActionBarDrawerToggle
 
+    private lateinit var tvProfileName: TextView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var rvMeals : RecyclerView
@@ -34,16 +36,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-/*      val userId = intent.getStringExtra("user_id")
+        val userId = intent.getStringExtra("user_id")
         val emailId = intent.getStringExtra("email_id")
-        To logout -> FirebaseAuth.getInstance().signOut()
+        /*To logout -> FirebaseAuth.getInstance().signOut()
         startActivity()
         finish()
         */
-
         rvMeals = findViewById(R.id.rvMeals)
         drawerLayout = findViewById(R.id.drawerLayout)
         navView = findViewById(R.id.navView)
+        val drawerHeaderView = navView.getHeaderView(0)
+        tvProfileName = drawerHeaderView.findViewById(R.id.tvProfileName)
+        tvProfileName.text = userId
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -73,6 +77,14 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(
                         applicationContext,
                         "Clicked on drawer item: ${it.itemId}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                R.id.miItem4 -> {
+                    Toast.makeText(
+                        applicationContext,
+                        "Clicked on profile settings.",
                         Toast.LENGTH_SHORT)
                         .show()
                 }

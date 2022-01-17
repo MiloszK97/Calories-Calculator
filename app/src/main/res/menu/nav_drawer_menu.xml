@@ -10,4 +10,8 @@
     <item android:id="@+id/miItem3"
           android:title="Item 3"/>
 
+    <item android:id="@+id/miItem4"
+          android:title="@string/tvProfileSettingsLabel"
+          android:icon="@drawable/ic_profile_settings"/>
+
 </menu>
