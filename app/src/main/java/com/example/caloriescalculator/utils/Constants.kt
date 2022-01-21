@@ -10,4 +10,13 @@ val DEFAULT_MEALS = listOf(
     R.string.lunch,
     R.string.snack,
     R.string.dinner
+
+)
+val PROFILE_INFO_LABELS = listOf(
+    "Nickname",
+    "Age",
+    "Gender",
+    "Height",
+    "Weight",
+    "Body Goal"
 )
