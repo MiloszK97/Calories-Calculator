@@ -12,6 +12,17 @@
     <string name="profileWelcome">Welcome</string>
     <string name="exampleProfileName">Thomas</string>
     <string name="tvProfileSettingsLabel">Profile settings</string>
+    <!-- Profile setup  -->
+    <string name="pSNicknameLabel">Nickname</string>
+    <string name="pSNicknameET">Enter nickname</string>
+    <string name="pSNextBTN">Next</string>
+    <string name="pSAgeLabel">Age</string>
+    <string name="psAgeET">Enter your age</string>
+    <string name="pSGenderLabel">Choose your gender</string>
+    <string name="pSHeightLabel">Enter your height</string>
+    <string name="pSHeightET">Height (cm)</string>
+    <string name="pSWeightLabel">Enter your weight</string>
+    <string name="pSWeightET">Weight (kg)</string>
     <!-- Text in menu that appears after click 3 dots button on meal  -->
     <string name="tvCopyMealText">Copy entire meal</string>
     <string name="tvClearMealText">Clear this meal</string>

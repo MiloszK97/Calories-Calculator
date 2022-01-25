@@ -11,8 +11,8 @@ class ActivitySetupProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup_profile)
 
-        val adapter = ViewPagerAdapter(PROFILE_INFO_LABELS)
+        /*val adapter = ViewPagerAdapter(PROFILE_INFO_LABELS)
         val viewPager: ViewPager2 = findViewById(R.id.viewPager)
-        viewPager.adapter = adapter
+        viewPager.adapter = adapter*/
     }
 }
