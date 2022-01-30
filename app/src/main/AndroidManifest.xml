@@ -26,7 +26,6 @@
         <activity
                 android:name=".login_register.LoginActivity"
                 android:exported="true">
-
         </activity>
         <activity
                 android:name=".SearchProduct"

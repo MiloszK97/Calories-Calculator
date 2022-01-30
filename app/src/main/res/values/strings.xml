@@ -17,12 +17,26 @@
     <string name="pSNicknameET">Enter nickname</string>
     <string name="pSNextBTN">Next</string>
     <string name="pSAgeLabel">Age</string>
-    <string name="psAgeET">Enter your age</string>
+    <string name="psAgeET">Enter age</string>
     <string name="pSGenderLabel">Choose your gender</string>
-    <string name="pSHeightLabel">Enter your height</string>
+    <string name="pSHeightLabel">Enter height</string>
     <string name="pSHeightET">Height (cm)</string>
-    <string name="pSWeightLabel">Enter your weight</string>
+    <string name="pSWeightLabel">Enter weight</string>
     <string name="pSWeightET">Weight (kg)</string>
+    <string name="pSGoalLabel">Select your body goal</string>
+    <string name="pSActivityLabel">Select your activity level</string>
+    <string name="tvProfileSetupInfo">Configure your profile</string>
+    <string name="pSCreateButton">Create</string>
+    <string name="pSGenderM">Male</string>
+    <string name="pSGenderF">Female</string>
+    <string name="pSLoseWeight">Lose weight</string>
+    <string name="pSHoldWeight">Keep your weight</string>
+    <string name="pSGainMuscle">Gain muscle</string>
+    <string-array name="activityLevels">
+        <item>1 Sitting at work and at home</item>
+        <item>1.2 Training 2-3 times a week</item>
+        <item>1.4 Training 2-3 times a week and 10k steps a day as average</item>
+    </string-array>
     <!-- Text in menu that appears after click 3 dots button on meal  -->
     <string name="tvCopyMealText">Copy entire meal</string>
     <string name="tvClearMealText">Clear this meal</string>
