@@ -2,6 +2,7 @@ package com.example.caloriescalculator
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
@@ -17,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.caloriescalculator.utils.CLICKED_MEAL_POSITION
 import com.example.caloriescalculator.utils.DEFAULT_MEALS
 import com.google.android.material.navigation.NavigationView
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,11 +32,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
 
     private lateinit var tvProfileName: TextView
+    private lateinit var tvYesterdayDate: TextView
+    private lateinit var tvTodayDate: TextView
+    private lateinit var tvTomorrowDate: TextView
+    private lateinit var cvYesterday: CardView
+    private lateinit var cvToday: CardView
+    private lateinit var cvTomorrow: CardView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var rvMeals : RecyclerView
     private lateinit var rvAdapter : DisplayMealsAdapter
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,6 +54,27 @@ class MainActivity : AppCompatActivity() {
         startActivity()
         finish()
         */
+        tvTodayDate = findViewById(R.id.tvTodayDate)
+
+        var today = setupDate()
+
+        cvYesterday = findViewById(R.id.cvYesterday)
+        cvToday = findViewById(R.id.cvToday)
+        cvTomorrow = findViewById(R.id.cvTomorrow)
+        cvYesterday.setOnClickListener {
+            tvTodayDate.text = "${today.minusDays(1).dayOfMonth} ${today.minusDays(1).month.toString().lowercase().capitalize()}"
+            today = today.minusDays(1)
+            //download from db current day
+            //callToApiWithDate(today)
+            //Toast.makeText(this@MainActivity, "You calling for the day $today", Toast.LENGTH_LONG).show()
+        }
+        cvTomorrow.setOnClickListener {
+            tvTodayDate.text = "${today.plusDays(1).dayOfMonth} ${today.plusDays(1).month.toString().lowercase().capitalize()}"
+            today = today.plusDays(1)
+            //download from db current day
+            //callToApiWithDate(today)
+            //Toast.makeText(this@MainActivity, "You calling for the day $today", Toast.LENGTH_LONG).show()
+        }
         rvMeals = findViewById(R.id.rvMeals)
         drawerLayout = findViewById(R.id.drawerLayout)
         navView = findViewById(R.id.navView)
@@ -92,6 +125,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setupDate(): LocalDateTime{
+        val current = LocalDateTime.now()
+        tvTodayDate.text = "${current.dayOfMonth} ${current.month.toString().lowercase().capitalize()}"
+        return current
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

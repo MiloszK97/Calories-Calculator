@@ -1,11 +1,14 @@
 package com.example.caloriescalculator.profile_setup
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.RadioButton
+import android.widget.Toast
+import com.example.caloriescalculator.MainActivity
 import com.example.caloriescalculator.databinding.ActivitySetupProfileBinding
 
 class ActivitySetupProfile : AppCompatActivity() {
@@ -34,7 +37,9 @@ class ActivitySetupProfile : AppCompatActivity() {
 
         binding.btnProfileCreate.setOnClickListener {
             collectUserProfileData(activityLevel)
-            //Toast.makeText(this, "You choose $activityLevel", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Successfully created profile!", Toast.LENGTH_SHORT).show()
+            /*val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)*/
         }
 
     }
@@ -50,6 +55,7 @@ class ActivitySetupProfile : AppCompatActivity() {
         val userHeight = binding.etProfileHeight.text.toString()
         val userWeight = binding.etProfileWeight.text.toString()
         val userBodyGoal = chosenBodyGoal.text.toString()
+        val userWaterAmount = userWeight.toInt() * 33
 
         val totalCalories = countTotalCalories(
             activityLevel,
@@ -66,7 +72,8 @@ class ActivitySetupProfile : AppCompatActivity() {
             userHeight,
             userWeight,
             userBodyGoal,
-            totalCalories.toString()
+            totalCalories.toString(),
+            userWaterAmount
         )
 
         Log.d(TAG, "Essa patrz to denciaku : $userProfileInfo")

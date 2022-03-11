@@ -5,6 +5,7 @@
     <string name="lunch">Lunch</string>
     <string name="snack">Snack</string>
     <string name="dinner">Dinner</string>
+    <string name="tvDisplayingDate">Day</string>
     <string name="searchForProducts">Type here name of the product</string>
     <!-- Sliding menu  -->
     <string name="open">Open</string>
@@ -33,9 +34,11 @@
     <string name="pSHoldWeight">Keep your weight</string>
     <string name="pSGainMuscle">Gain muscle</string>
     <string-array name="activityLevels">
-        <item>1 Sitting at work and at home</item>
-        <item>1.2 Training 2-3 times a week</item>
-        <item>1.4 Training 2-3 times a week and 10k steps a day as average</item>
+        <item>1.2 Person who lay in bed, no motion at all</item>
+        <item>1.4 Sitting work or student average of 4–6k steps a day</item>
+        <item>1.6 Standing work (e.g. housework, shop assistant)</item>
+        <item>1.7 More than 11k steps a day. (Physical work or 4–5 workouts weekly)</item>
+        <item>2.0 Professional athlete or more than 6 workouts a week</item>
     </string-array>
     <!-- Text in menu that appears after click 3 dots button on meal  -->
     <string name="tvCopyMealText">Copy entire meal</string>
@@ -44,8 +47,8 @@
     <string name="searchProdLabel">Search</string>
     <string name="favProdLabel">Favourites</string>
     <!-- Text in one row view on RV in searching products process is done -->
-    <string name="foundProdCaloriesLabel">Calories</string>
-    <string name="foundProdWeightLabel">Weight</string>
+    <string name="foundProdCaloriesLabel">Calories:</string>
+    <string name="foundProdWeightLabel">Weight:</string>
     <!-- Login Activity -->
     <string name="loginLabel">Login:</string>
     <string name="loginETHint">Email</string>

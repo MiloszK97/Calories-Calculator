@@ -1,7 +1,9 @@
 package com.example.caloriescalculator.login_register
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -31,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         val userId = intent.getStringExtra("user_id")
         val userEmail = intent.getStringExtra("email_id")
-
+        
         binding.etLogin.setText(userEmail)
 
         binding.loginBtn.setOnClickListener {

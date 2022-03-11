@@ -175,6 +175,7 @@
                 android:id="@+id/rgBodyGoal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_gravity="center_horizontal"
                 android:padding="2dp"
                 android:layout_margin="2dp">
