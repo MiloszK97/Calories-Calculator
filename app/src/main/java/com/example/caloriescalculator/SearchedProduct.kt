@@ -1,5 +1,5 @@
 package com.example.caloriescalculator
 
-data class SearchedProduct( val name: String,
-                            val caloriesExample : Int,
-                            val weightExample: Int)
+data class SearchedProduct(val food_name: String,
+                           val serving_qty: Int,
+                           val serving_unit: String)

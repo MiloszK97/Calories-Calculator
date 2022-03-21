@@ -10,8 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SearchProductAdapter(
     private val context: Context,
-    private val searchedProducts: List<SearchedProduct>)
-    : RecyclerView.Adapter<SearchProductAdapter.ViewHolder>() {
+    private val searchedProducts: MutableList<SearchedProduct>,
+    private val foodClickListener: SearchProductAdapter.FoodClickListener
+) : RecyclerView.Adapter<SearchProductAdapter.ViewHolder>() {
+
+    interface FoodClickListener{
+        fun onFoodClicked(position: Int)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.one_searched_product, parent, false)
@@ -29,11 +35,17 @@ class SearchProductAdapter(
         private val tvFoundProdName: TextView = itemView.findViewById(R.id.tvFoundProdName)
         private val tvFoundProdCalories: TextView = itemView.findViewById(R.id.tvFoundProdCalories)
         private val tvFoundProdWeight: TextView = itemView.findViewById(R.id.tvFoundProdWeight)
+        private val cvFoundProd: CardView = itemView.findViewById(R.id.cvFoundProd)
 
         fun bind(foundProduct: SearchedProduct) {
-            tvFoundProdName.text = foundProduct.name
-            tvFoundProdCalories.text = "${foundProduct.caloriesExample}kcal"
-            tvFoundProdWeight.text = "${foundProduct.weightExample}g"
+            tvFoundProdName.text = foundProduct.food_name
+            tvFoundProdCalories.text = "${foundProduct.serving_qty}"
+            tvFoundProdWeight.text = "${foundProduct.serving_unit}"
+
+            cvFoundProd.setOnClickListener {
+                foodClickListener.onFoodClicked(position)
+            }
+
         }
     }
 

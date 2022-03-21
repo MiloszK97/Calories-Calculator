@@ -47,8 +47,8 @@
     <string name="searchProdLabel">Search</string>
     <string name="favProdLabel">Favourites</string>
     <!-- Text in one row view on RV in searching products process is done -->
-    <string name="foundProdCaloriesLabel">Calories:</string>
-    <string name="foundProdWeightLabel">Weight:</string>
+    <string name="foundProdCaloriesLabel">Serving qty:</string>
+    <string name="foundProdWeightLabel">Serving unit:</string>
     <!-- Login Activity -->
     <string name="loginLabel">Login:</string>
     <string name="loginETHint">Email</string>
@@ -71,4 +71,8 @@
     <string name="goToLogin">Already have an account?
         <b>Sign in.</b>
     </string>
+    <!-- Add weight Activity -->
+    <string name="customWeightLabel">g</string>
+    <string name="halfHundred">50g</string>
+    <string name="hundredLabel">100g</string>
 </resources>

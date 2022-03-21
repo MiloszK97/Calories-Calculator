@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,9 +18,15 @@ import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.caloriescalculator.api.RetrofitInstance
+import com.example.caloriescalculator.model.OneMealModel
+import com.example.caloriescalculator.model.OneMealModelItem
 import com.example.caloriescalculator.utils.CLICKED_MEAL_POSITION
 import com.example.caloriescalculator.utils.DEFAULT_MEALS
 import com.google.android.material.navigation.NavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -27,14 +35,16 @@ class MainActivity : AppCompatActivity() {
 
     companion object{
         private const val REQUEST_CODE = 1909
+        private const val TAG = "MainActivity"
     }
 
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var userId: String
+
+    var eachMealData: MutableList<MutableList<Double>> = mutableListOf()
 
     private lateinit var tvProfileName: TextView
-    private lateinit var tvYesterdayDate: TextView
     private lateinit var tvTodayDate: TextView
-    private lateinit var tvTomorrowDate: TextView
     private lateinit var cvYesterday: CardView
     private lateinit var cvToday: CardView
     private lateinit var cvTomorrow: CardView
@@ -48,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val userId = intent.getStringExtra("user_id")
+        userId = intent.getStringExtra("user_id").toString()
         val emailId = intent.getStringExtra("email_id")
         /*To logout -> FirebaseAuth.getInstance().signOut()
         startActivity()
@@ -129,10 +139,13 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupDate(): LocalDateTime{
+        val formatter = DateTimeFormatter.ISO_DATE
         val current = LocalDateTime.now()
         tvTodayDate.text = "${current.dayOfMonth} ${current.month.toString().lowercase().capitalize()}"
+        getTodayMealFromDB(current.format(formatter), 2)
         return current
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)){
@@ -153,6 +166,7 @@ class MainActivity : AppCompatActivity() {
         }, object : DisplayMealsAdapter.AddProductClickListener{
              override fun onAddProductClicked(position: Int) {
                  val intent = Intent(this@MainActivity, SearchProduct::class.java)
+                 intent.putExtra(CLICKED_MEAL_POSITION, position)
                  startActivity(intent)
              }
          }, object : DisplayMealsAdapter.OptionsButtonClickListener{
@@ -169,7 +183,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createMeals(): List<Meal> {
         val meals = mutableListOf<Meal>()
-        for (i in 0..4) meals.add(Meal(getString(DEFAULT_MEALS[i]), 1234, 111.1, 56.9, 199.4))
+        for (i in 0..4) meals.add(Meal(getString(DEFAULT_MEALS[i]), 10, 10.0, 10.0, 10.0))
         return meals
     }
 
@@ -181,5 +195,20 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Ok"){_,_->
                 positiveClickListener.onClick(null)
             }.show()
+    }
+
+    private fun getTodayMealFromDB(date: String?, mealID: Int) {
+        //Log.d(TAG, "Today is: $date")
+        val date1 = "2022-02-21"
+        RetrofitInstance.api.getMealTotKcal("dsf34t4t34tdfg", mealID, date1).enqueue(object: Callback<Double>{
+            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+                val responseBody = response.body()!!
+                Log.d(TAG, "Total Kcal: $responseBody")
+            }
+
+            override fun onFailure(call: Call<Double>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
     }
 }
