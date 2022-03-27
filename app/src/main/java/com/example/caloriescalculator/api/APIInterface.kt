@@ -1,16 +1,9 @@
 package com.example.caloriescalculator.api
 
 import com.example.caloriescalculator.model.MealItem
-import com.example.caloriescalculator.model.OneMealModel
 import com.example.caloriescalculator.model.OneMealModelItem
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface APIInterface {
 
@@ -32,24 +25,9 @@ interface APIInterface {
     fun getMealTotKcal(
         @Path("profileID") profileID: String,
         @Query("mealID") mealID: Int,
-        @Query("date") date: String): Call<Double>
+        @Query("date") date: String): Call<List<List<Double>>>
 
-    @GET("api/v1/mealitem/getmealmacrosP/{profileID}")
-    fun getMealTotProt(
-        @Path("profileID") profileID: String,
-        @Query("mealID") mealID: Int,
-        @Query("date") date: String): Call<Double>
-
-    @GET("api/v1/mealitem/getmealmacrosF/{profileID}")
-    fun getMealTotFat(
-        @Path("profileID") profileID: String,
-        @Query("mealID") mealID: Int,
-        @Query("date") date: String): Call<Double>
-
-    @GET("api/v1/mealitem/getmealmacrosC/{profileID}")
-    fun getMealTotCarbs(
-        @Path("profileID") profileID: String,
-        @Query("mealID") mealID: Int,
-        @Query("date") date: String): Call<Double>
+    @DELETE("api/v1/mealitem/{mealItemID}")
+    suspend fun deleteMealItem(@Path("mealItemID") mealItemID: String)
 }
 

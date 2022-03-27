@@ -5,22 +5,21 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.caloriescalculator.api.RetrofitInstance
-import com.example.caloriescalculator.model.OneMealModel
-import com.example.caloriescalculator.model.OneMealModelItem
 import com.example.caloriescalculator.utils.CLICKED_MEAL_POSITION
 import com.example.caloriescalculator.utils.DEFAULT_MEALS
 import com.google.android.material.navigation.NavigationView
@@ -29,7 +28,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,8 +39,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var userId: String
 
-    var eachMealData: MutableList<MutableList<Double>> = mutableListOf()
-
     private lateinit var tvProfileName: TextView
     private lateinit var tvTodayDate: TextView
     private lateinit var cvYesterday: CardView
@@ -52,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var rvMeals : RecyclerView
     private lateinit var rvAdapter : DisplayMealsAdapter
+    private lateinit var mainProgessBar: ProgressBar
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,15 +62,18 @@ class MainActivity : AppCompatActivity() {
         finish()
         */
         tvTodayDate = findViewById(R.id.tvTodayDate)
-
+        mainProgessBar = findViewById(R.id.pbMain)
+        mainProgessBar.isVisible = false
         var today = setupDate()
-
         cvYesterday = findViewById(R.id.cvYesterday)
         cvToday = findViewById(R.id.cvToday)
         cvTomorrow = findViewById(R.id.cvTomorrow)
         cvYesterday.setOnClickListener {
             tvTodayDate.text = "${today.minusDays(1).dayOfMonth} ${today.minusDays(1).month.toString().lowercase().capitalize()}"
+            val formatter = DateTimeFormatter.ISO_DATE
             today = today.minusDays(1)
+            Log.d(TAG, "Date to Api call: ${today.format(formatter)}")
+            createMealsMacroList(today.format(formatter), userId)
             //download from db current day
             //callToApiWithDate(today)
             //Toast.makeText(this@MainActivity, "You calling for the day $today", Toast.LENGTH_LONG).show()
@@ -81,6 +81,9 @@ class MainActivity : AppCompatActivity() {
         cvTomorrow.setOnClickListener {
             tvTodayDate.text = "${today.plusDays(1).dayOfMonth} ${today.plusDays(1).month.toString().lowercase().capitalize()}"
             today = today.plusDays(1)
+            val formatter = DateTimeFormatter.ISO_DATE
+            Log.d(TAG, "Date to Api call: ${today.format(formatter)}")
+            createMealsMacroList(today.format(formatter), userId)
             //download from db current day
             //callToApiWithDate(today)
             //Toast.makeText(this@MainActivity, "You calling for the day $today", Toast.LENGTH_LONG).show()
@@ -95,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        setupMainMealsScreen()
+        //createMealsMacroList("2022-02-21", userId)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
@@ -134,7 +137,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -142,7 +144,8 @@ class MainActivity : AppCompatActivity() {
         val formatter = DateTimeFormatter.ISO_DATE
         val current = LocalDateTime.now()
         tvTodayDate.text = "${current.dayOfMonth} ${current.month.toString().lowercase().capitalize()}"
-        getTodayMealFromDB(current.format(formatter), 2)
+        //createMealsMacroList(current.format(formatter), userId)
+        createMealsMacroList("2022-02-21", userId)
         return current
     }
 
@@ -155,8 +158,8 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setupMainMealsScreen() {
-        val meals = createMeals()
+    private fun setupMainMealsScreen(data: MutableList<List<Double>>) {
+        val meals = createMeals(data)
         rvAdapter = DisplayMealsAdapter(this, meals, object: DisplayMealsAdapter.MealClickListener{
             override fun onMealClicked(position: Int) {
                 val intent = Intent(this@MainActivity, MealActivity::class.java)
@@ -181,11 +184,12 @@ class MainActivity : AppCompatActivity() {
         rvMeals.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun createMeals(): List<Meal> {
+    private fun createMeals(data: MutableList<List<Double>>): List<Meal> {
         val meals = mutableListOf<Meal>()
-        for (i in 0..4) meals.add(Meal(getString(DEFAULT_MEALS[i]), 10, 10.0, 10.0, 10.0))
+        for (i in 0..4) meals.add(Meal(getString(DEFAULT_MEALS[i]), data[i][0].toInt(), data[i][1], data[i][2], data[i][3]))
         return meals
     }
+
 
     private fun showAlertDialog(title : String, view : View?, positiveClickListener: View.OnClickListener) {
         AlertDialog.Builder(this)
@@ -197,18 +201,34 @@ class MainActivity : AppCompatActivity() {
             }.show()
     }
 
-    private fun getTodayMealFromDB(date: String?, mealID: Int) {
-        //Log.d(TAG, "Today is: $date")
-        val date1 = "2022-02-21"
-        RetrofitInstance.api.getMealTotKcal("dsf34t4t34tdfg", mealID, date1).enqueue(object: Callback<Double>{
-            override fun onResponse(call: Call<Double>, response: Response<Double>) {
-                val responseBody = response.body()!!
-                Log.d(TAG, "Total Kcal: $responseBody")
+    private fun createMealsMacroList(date: String, userId: String) {
+        val defaultListWithZeroValues: List<List<Double>> = listOf(
+            listOf(0.0, 0.0, 0.0, 0.0),
+            listOf(0.0, 0.0, 0.0, 0.0),
+            listOf(0.0, 0.0, 0.0, 0.0),
+            listOf(0.0, 0.0, 0.0, 0.0),
+            listOf(0.0, 0.0, 0.0, 0.0)
+        )
+        mainProgessBar.isVisible = true
+        RetrofitInstance.api.getMealTotKcal("dsf34t4t34tdfg", 0, date).enqueue(object: Callback<List<List<Double>>> {
+            override fun onResponse(call: Call<List<List<Double>>>, response: Response<List<List<Double>>>) {
+                for (item in response.body()!!){
+                    if (item[0] == null) {
+                        setupMainMealsScreen(defaultListWithZeroValues as MutableList<List<Double>>)
+                    }else{
+                        setupMainMealsScreen(response.body()!! as MutableList<List<Double>>)
+                    }
+                }
+                mainProgessBar.isVisible = false
             }
 
-            override fun onFailure(call: Call<Double>, t: Throwable) {
+            override fun onFailure(call: Call<List<List<Double>>>, t: Throwable) {
                 Log.e(TAG, "onFailure: ${t.message}")
+                mainProgessBar.isVisible = false
             }
+
         })
+
     }
 }
+
