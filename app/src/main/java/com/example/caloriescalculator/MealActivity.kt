@@ -14,7 +14,6 @@ import com.example.caloriescalculator.model.OneMealModelItem
 import com.example.caloriescalculator.utils.CLICKED_MEAL_POSITION
 import com.example.caloriescalculator.utils.DEFAULT_MEALS
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -27,6 +26,13 @@ class MealActivity : AppCompatActivity() {
 
     companion object{
         private const val TAG = "MealActivity"
+        private const val PRODUCT_ID = "PRODUCT_ID"
+        private const val PRODUCT_NAME = "PRODUCT_NAME"
+        private const val PRODUCT_WEIGHT = "PRODUCT_WEIGHT"
+        private const val PRODUCT_CAL = "PRODUCT_CAL"
+        private const val PRODUCT_PROT = "PRODUCT_PROT"
+        private const val PRODUCT_FAT = "PRODUCT_FAT"
+        private const val PRODUCT_CARBS = "PRODUCT_CARBS"
     }
 
 private lateinit var tvMealName : TextView
@@ -42,7 +48,8 @@ private var clickedMealPosition: Int = -1
         rvListOfProducts = findViewById(R.id.rvListOfProducts)
         clickedMealPosition = intent.getIntExtra(CLICKED_MEAL_POSITION, -1)
 
-        getMealItemsList()
+        val chosenDate = intent.getStringExtra("DATE_TO_SHOW")
+        getMealItemsList(chosenDate!!)
 
     }
 
@@ -54,6 +61,18 @@ private var clickedMealPosition: Int = -1
                 deleteMealItemFromDB(products[position].mealItemID)
                 products.removeAt(position)
                 rvProdAdapter!!.notifyItemRemoved(position)
+            }
+        }, object: ListOfProductsAdapter.EditButtonClickListener{
+            override fun onProductEditClick(position: Int) {
+                val intent = Intent(this@MealActivity, UpdateMealItemActivity::class.java)
+                intent.putExtra(PRODUCT_ID, products[position].mealItemID)
+                intent.putExtra(PRODUCT_NAME, products[position].name)
+                intent.putExtra(PRODUCT_WEIGHT, products[position].productWeight)
+                intent.putExtra(PRODUCT_CAL, products[position].numCalories)
+                intent.putExtra(PRODUCT_PROT, products[position].numProteins)
+                intent.putExtra(PRODUCT_FAT, products[position].numFat)
+                intent.putExtra(PRODUCT_CARBS, products[position].numCarbs)
+                startActivity(intent)
             }
         })
         rvListOfProducts.adapter = rvProdAdapter
@@ -67,9 +86,9 @@ private var clickedMealPosition: Int = -1
         return products
     }
 
-    private fun getMealItemsList(){
+    private fun getMealItemsList(chosenDate: String) {
         val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
-        RetrofitInstance.api.getMeal("dsf34t4t34tdfg", clickedMealPosition, "2022-02-21").enqueue(object: Callback<List<OneMealModelItem>>{
+        RetrofitInstance.api.getMeal(currentUserID, clickedMealPosition, chosenDate).enqueue(object: Callback<List<OneMealModelItem>>{
             override fun onResponse(call: Call<List<OneMealModelItem>>, response: Response<List<OneMealModelItem>>) {
                 if(response.body()!!.isEmpty()){
                     Toast.makeText(this@MealActivity, "There is nothing in this meal!", Toast.LENGTH_SHORT).show()

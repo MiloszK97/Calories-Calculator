@@ -2,16 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/miItem1"
-          android:title="Item 1"/>
-
-    <item android:id="@+id/miItem2"
-          android:title="Item 2"/>
-
-    <item android:id="@+id/miItem3"
-          android:title="Item 3"/>
-
-    <item android:id="@+id/miItem4"
           android:title="@string/tvProfileSettingsLabel"
           android:icon="@drawable/ic_profile_settings"/>
+
+    <item android:id="@+id/miItem2"
+          android:title="@string/waterControl"/>
+
+    <item android:id="@+id/miItem3"
+          android:title="@string/creditsLabel"/>
+
+    <item android:id="@+id/miItem4"
+          android:title="@string/logout"
+          android:icon="@drawable/outline_logout_24"/>
 
 </menu>

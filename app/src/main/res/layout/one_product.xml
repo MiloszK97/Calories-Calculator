@@ -23,6 +23,14 @@
         <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/ibEditProduct"
+                android:layout_below="@+id/tvProductName"
+                android:layout_toLeftOf="@+id/ibDeleteProduct"
+                android:src="@drawable/ic_edit" android:backgroundTint="#00FFFFFF"/>
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/ibDeleteProduct"
                 android:layout_below="@+id/tvProductName"
                 android:layout_alignParentEnd="true"
@@ -33,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvProductWeightLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                tools:text="Weight:"
+                android:text = "@string/weightLabel"
                 android:textStyle="bold"
                 android:layout_below="@+id/tvProductName"
                 android:layout_marginTop="2dp"/>
@@ -52,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvProductCaloriesLabel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                tools:text="Calories:"
+                android:text="@string/caloriesLabel"
                 android:textStyle="bold"
                 android:layout_below="@+id/tvProductName"
                 android:layout_marginTop="2dp"
@@ -81,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvProteinsLabel"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    tools:text="Proteins:"
+                    android:text="@string/proteinsLabel"
                     android:textStyle="bold"
                     android:layout_gravity="start"/>
 
@@ -91,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvFatLabel"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    tools:text="Fat:"
+                    android:text="@string/fatLabel"
                     android:textStyle="bold"
                     android:layout_gravity="center"/>
 
@@ -101,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvCarbsLabel"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    tools:text="Carbs:"
+                    android:text="@string/carbsLabel"
                     android:textStyle="bold"
                     android:layout_gravity="end"/>
         </LinearLayout>

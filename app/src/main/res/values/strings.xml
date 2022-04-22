@@ -75,4 +75,25 @@
     <string name="customWeightLabel">g</string>
     <string name="halfHundred">50g</string>
     <string name="hundredLabel">100g</string>
+    <!-- Appearance of one product -->
+    <string name="weightLabel">Weight:</string>
+    <string name="caloriesLabel">Calories:</string>
+    <string name="proteinsLabel">Proteins:</string>
+    <string name="fatLabel">Fat:</string>
+    <string name="carbsLabel">Carbs:</string>
+    <!-- Update a product -->
+    <string name="updateLabelText">Enter new weight:</string>
+    <string name="editTextUpdateText">ex. 124</string>
+    <string name="updateButtonLabelText">Update</string>
+    <!-- Navigation Drawer -->
+    <string name="navDrawerProfileSettings">Profile Settings</string>
+    <string name="creditsLabel">About Us</string>
+    <string name="logout">Logout</string>
+    <string name="waterControl">Water Control</string>
+    <!-- Credits -->
+    <string name="version">Version: 1.0</string>
+    <string name="ownerLabel">Develop By:</string>
+    <string name="ownerName">Milosz Kowalski</string>
+    <!-- Water Amount Activity -->
+    <string name="waterLabel">Today You have drunk:</string>
 </resources>

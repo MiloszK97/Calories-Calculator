@@ -1,5 +1,6 @@
 package com.example.caloriescalculator
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -44,7 +45,6 @@ class AddProduct : AppCompatActivity() {
         val postFoodName: String? = intent.getStringExtra("FoodName")
         val mealID: Int = intent.getIntExtra("mealID", -1)
         val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
-        Log.d(TAG, "user id: $currentUserID")
 
         binding.postProgressBar.isVisible = false
         binding.tvAddProductName.text = postFoodName
@@ -124,6 +124,9 @@ class AddProduct : AppCompatActivity() {
                     return@launch
                 }
             }
+        val intent = Intent(this@AddProduct, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 
