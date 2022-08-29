@@ -2,7 +2,7 @@
 
 Simple tool to control your daily calories and water consumption.
 # 
-Key Features • How To Use • Download • Credits • Related • License
+[Key Features](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#key-features) • How To Use • Download • Credits • Related • License
 
 ## Key Features
 
