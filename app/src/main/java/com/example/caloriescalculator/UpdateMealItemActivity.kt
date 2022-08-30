@@ -38,11 +38,11 @@ class UpdateMealItemActivity : AppCompatActivity() {
         val productCarbs = intent.getDoubleExtra("PRODUCT_CARBS", 0.0)
 
         binding.button.setOnClickListener {
-            if (binding.editTextNumberDecimal.text.toString() != ""){
+            if (binding.editTextNumberDecimal.text.toString() != "" && binding.editTextNumberDecimal.text.toString().toInt() > 0){
                 binding.pbUpdateMI.isVisible = true
                 calculateNewNutrition(productID, productName, productWeight, productCalories, productProteins, productFat, productCarbs, binding.editTextNumberDecimal.text.toString())
             }else{
-                Toast.makeText(this@UpdateMealItemActivity, "Weight cannot be empty!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@UpdateMealItemActivity, "Weight must be greater than 0!", Toast.LENGTH_SHORT).show()
             }
         }
     }

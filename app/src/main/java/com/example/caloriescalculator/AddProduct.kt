@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -98,17 +99,25 @@ class AddProduct : AppCompatActivity() {
 
         binding.ibAddCustom.setOnClickListener {
             val weightByUser = binding.etCustomWeight.text.toString()
-            val mealitem = MealItem(
-                postFoodName!!,
-                weightByUser.toDouble(),
-                convertToHundred(data.foods[0].nf_calories, data.foods[0].serving_weight_grams, weightByUser.toInt()).toDouble(),
-                convertProteins(data.foods[0].nf_protein, data.foods[0].serving_weight_grams, weightByUser.toInt()),
-                convertFat(data.foods[0].nf_total_fat, data.foods[0].serving_weight_grams, weightByUser.toInt()),
-                convertCarbs(data.foods[0].nf_total_carbohydrate, data.foods[0].serving_weight_grams, weightByUser.toInt()),
-                currentUserID,
-                mealID,
-                date)
-            sendMealItemToDB(mealitem)
+            if (weightByUser == ""){
+                Toast.makeText(this@AddProduct, "Weight must not be empty!", Toast.LENGTH_SHORT).show()
+            }else{
+                if(weightByUser.toInt() > 0){
+                    val mealitem = MealItem(
+                        postFoodName!!,
+                        weightByUser.toDouble(),
+                        convertToHundred(data.foods[0].nf_calories, data.foods[0].serving_weight_grams, weightByUser.toInt()).toDouble(),
+                        convertProteins(data.foods[0].nf_protein, data.foods[0].serving_weight_grams, weightByUser.toInt()),
+                        convertFat(data.foods[0].nf_total_fat, data.foods[0].serving_weight_grams, weightByUser.toInt()),
+                        convertCarbs(data.foods[0].nf_total_carbohydrate, data.foods[0].serving_weight_grams, weightByUser.toInt()),
+                        currentUserID,
+                        mealID,
+                        date)
+                    sendMealItemToDB(mealitem)
+                }else{
+                    Toast.makeText(this@AddProduct, "Weight must be greater than 0!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
