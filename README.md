@@ -3,6 +3,7 @@
 Simple tool to control your daily calories and water consumption.
 # 
 [Key Features](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#key-features) • [How To Use](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#how-to-use) • [Download](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#download) • [Credits](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#credits) • [Related](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#related) • [License](https://github.com/MiloszK97/Calories-Calculator/blob/main/README.md#license)
+![](https://github.com/MiloszK97/Calories-Calculator/blob/appDeveloping/app/img/mainScreen.png)
 ## Key Features
 
  - Data base with over 600 000 food, popular places like McDonald's menu included. Using [Nutritionix API](https://www.nutritionix.com/business/api).
